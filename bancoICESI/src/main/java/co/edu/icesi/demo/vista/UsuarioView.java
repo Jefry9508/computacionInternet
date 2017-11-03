@@ -344,4 +344,8 @@ public class UsuarioView {
 		return "";
 	}
 
+	public void metodoPrueba() {
+
+	}
+
 }
