@@ -1,0 +1,195 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Banco Icesi</title>
+
+</h:head>
+
+<h:body>
+	<h:form>
+
+		<p:panel header="Gestión Usuarios">
+			<p:tabView orientation="left">
+				<p:tab title="Registro">
+					<p:growl id="growl3" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Nombre:" />
+							<p:inputText id="txtNombre" binding="#{usuarioView.txtNombre}" />
+
+
+							<p:outputLabel value="Cedula:" />
+							<p:inputText id="txtCedula" binding="#{usuarioView.txtCedula}" />
+
+
+							<p:outputLabel value="Login:" />
+							<p:inputText id="txtLogin" binding="#{usuarioView.txtLogin}" />
+
+
+							<p:outputLabel value="Clave:" />
+							<p:password id="txtClave" binding="#{usuarioView.txtClave}" />
+
+
+							<p:outputLabel value="Tipo Usuario:" />
+							<p:selectOneMenu id="tipoUsu" value="#{usuarioView.tipoUsuario}">
+								<f:selectItem itemLabel="Opciones" itemValue="" />
+								<f:selectItems value="#{usuarioView.listTiposUsuarios}" />
+							</p:selectOneMenu>
+
+
+
+						</h:panelGrid>
+						<p:commandButton id="btnGuardar" value="Guardar"
+							action="#{usuarioView.actionGuardar()}" update="growl3" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Actulización">
+					<p:growl id="growl2" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Cedula:" />
+							<p:inputText id="txtCedula1" binding="#{usuarioView.txtCedula1}" />
+
+
+							<p:outputLabel value="Nombre:" />
+							<p:inputText id="txtNombre1" binding="#{usuarioView.txtNombre1}" />
+
+
+							<p:outputLabel value="Login:" />
+							<p:inputText id="txtLogin1" binding="#{usuarioView.txtLogin1}" />
+
+
+							<p:outputLabel value="Clave:" />
+							<p:password id="txtClave1" binding="#{usuarioView.txtClave1}" />
+
+
+							<p:outputLabel value="Tipo Usuario:" />
+							<p:selectOneMenu id="tipoUsu1"
+								value="#{usuarioView.tipoUsuario1}">
+								<f:selectItem itemLabel="Opciones" itemValue="" />
+								<f:selectItems value="#{usuarioView.listTiposUsuarios}" />
+							</p:selectOneMenu>
+
+
+
+						</h:panelGrid>
+						<p:commandButton id="btnActualizar" value="Actualizar"
+							action="#{usuarioView.actionActualizar()}" update="growl2" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Eliminar">
+					<p:growl id="growl1" showDetail="true" sticky="true" />
+
+					<p:panel id="panel">
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="Cedula:" />
+							<p:inputText id="txtCedula2" binding="#{usuarioView.txtCedula2}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBorrar" value="Borrar"
+							action="#{usuarioView.actionBorrar()}" update="growl1">
+
+						</p:commandButton>
+					</p:panel>
+
+				</p:tab>
+
+
+				<p:tab title="Buscar">
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="Cedula:" />
+							<p:inputText id="txtCedula3" binding="#{usuarioView.txtCedula3}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBuscar" value="Buscar"
+							action="#{usuarioView.actionBuscar()}" ajax="false">
+
+						</p:commandButton>
+					</p:panel>
+
+					<p:growl id="growl" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Cedula: " />
+							<h:outputText id="b1" value="#{usuarioView.cedula}" />
+
+
+							<p:outputLabel value="Nombre: " />
+							<h:outputText id="b2" value="#{usuarioView.nombre}" />
+
+
+							<p:outputLabel value="Login: " />
+							<h:outputText id="b3" value="#{usuarioView.login}" />
+
+
+							<p:outputLabel value="Clave: " />
+							<h:outputText id="b4" value="#{usuarioView.clave}" />
+
+							<p:outputLabel value="Tipo usuario: " />
+							<h:outputText id="b5" value="#{usuarioView.tipUsuc}" />
+
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+				<p:tab title="Información usuarios">
+
+					<p:panel>
+						<h:panelGrid columns="1" cellpadding="2">
+
+							<p:commandButton value="Actualizar"
+								action="#{usuarioView.actualizarUsuariosTablas()}"
+								id="buttonUpdateTable" update="growl"
+								icon="ui-icon-arrowrefresh-1-s" ajax="false" />
+
+							<p:dataTable var="table" value="#{usuarioView.usuariosTabla}"
+								scrollWidth="true" paginator="true" rowsPerPageTemplate="5,10,15">
+								<p:column headerText="Cédula">
+									<h:outputText value="#{table.usuCedula}" />
+								</p:column>
+
+								<p:column headerText="Nombre">
+									<h:outputText value="#{table.usuNombre}" />
+								</p:column>
+
+								<p:column headerText="Login">
+									<h:outputText value="#{table.usuLogin}" />
+								</p:column>
+
+								<p:column headerText="Clave">
+									<h:outputText value="#{table.usuClave}" />
+								</p:column>
+								
+								<p:column headerText="Tipo usuario">
+									<h:outputText value="#{table.tiposUsuarios.tusuNombre}" />
+								</p:column>
+							</p:dataTable>
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+
+			</p:tabView>
+		</p:panel>
+
+	</h:form>
+
+
+</h:body>
+</html>

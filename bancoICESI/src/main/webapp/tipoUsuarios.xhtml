@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:panel header="Registro Tipos Usuarios">
+			<h:panelGrid columns="2" cellpadding="2">
+				<p:outputLabel value="Id:" />
+				<p:inputText id="txtId" binding="#{tiposUsuariosView.txtId}" />
+
+
+				<p:outputLabel value="Nombre:" />
+				<p:inputText id="txtNombre" binding="#{tiposUsuariosView.txtNombre}" />
+
+			</h:panelGrid>
+		</p:panel>
+		<p:commandButton id="btnGuardar" value="Guardar"
+			action="#{tiposUsuariosView.actionGuardar()}" />
+
+		<p:commandButton id="btnActualizar" value="Actualizar"
+			action="#{tiposUsuariosView.actionActualizar()}" />
+
+		<p:commandButton id="btnBorrar" value="Borrar"
+			action="#{tiposUsuariosView.actionBorrar()}" />
+
+		<p:commandButton id="btnBuscar" value="Buscar"
+			action="#{tiposUsuariosView.actionBuscar()}" />
+
+	</h:form>
+
+
+</h:body>
+</html>

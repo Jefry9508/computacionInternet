@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:panel header="Registro Consignaciones">
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel value="Código:" />
+				<p:inputText id="txtCodigo" binding="#{consignacionesView.txtCodigo}" />
+
+
+				<p:outputLabel value="Número de cuenta:" />
+				<p:inputText id="txtCuenta" binding="#{consignacionesView.txtCuenta}" />
+				
+				
+				<p:outputLabel value="Cédula Usuario:" />
+				<p:inputText id="txtUsuario" binding="#{consignacionesView.txtUsuario}" />
+				
+				
+				<p:outputLabel value="Valor:" />
+				<p:inputText id="txtValor" binding="#{consignacionesView.txtValor}" />
+				
+				<p:outputLabel value="Descripción:" />
+				<p:inputTextarea id="txtDescripcion" binding="#{consignacionesView.txtDescripcion}" />
+
+
+			</h:panelGrid>
+		</p:panel>
+		<p:commandButton id="btnGuardar" value="Guardar"
+			action="#{consignacionesView.actionGuardar()}" />
+
+		<p:commandButton id="btnActualizar" value="Actualizar"
+			action="#{consignacionesView.actionActualizar()}" />
+
+		<p:commandButton id="btnBorrar" value="Borrar"
+			action="#{consignacionesView.actionBorrar()}" />
+
+		<p:commandButton id="btnBuscar" value="Buscar"
+			action="#{consignacionesView.actionBuscar()}" />
+
+	</h:form>
+
+
+</h:body>
+</html>

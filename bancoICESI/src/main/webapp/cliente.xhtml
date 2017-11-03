@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:panel header="Registro Cliente">
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel value="Nombre:" />
+				<p:inputText id="txtNombre" binding="#{clienteView.txtNombre}" />
+
+
+				<p:outputLabel value="Identificación:" />
+				<p:inputText id="txtId" binding="#{clienteView.txtId}" />
+				
+				<p:outputLabel value="Tipo documento:" />
+				<p:selectOneMenu id="tipoDoc" value="#{clienteView.tipoDoc}">
+					<f:selectItem itemLabel="Opciones" itemValue="" />
+					<f:selectItems value="#{clienteView.listTiposDocumentos}" />
+				</p:selectOneMenu>
+
+
+				<p:outputLabel value="Dirección:" />
+				<p:inputText id="txtDireccion" binding="#{clienteView.txtDireccion}" />
+
+
+				<p:outputLabel value="Teléfono:" />
+				<p:inputText id="txtTelefono" binding="#{clienteView.txtTelefono}" />
+				
+				<p:outputLabel value="Email:" />
+				<p:inputText id="txtEmail" binding="#{clienteView.txtEmail}" />
+
+
+
+			</h:panelGrid>
+		</p:panel>
+		<p:commandButton id="btnGuardar" value="Guardar"
+			action="#{clienteView.actionGuardar()}" />
+
+		<p:commandButton id="btnActualizar" value="Actualizar"
+			action="#{clienteView.actionActualizar()}" />
+
+		<p:commandButton id="btnBorrar" value="Borrar"
+			action="#{clienteView.actionBorrar()}" />
+
+		<p:commandButton id="btnBuscar" value="Buscar"
+			action="#{clienteView.actionBuscar()}" />
+
+	</h:form>
+
+
+</h:body>
+</html>

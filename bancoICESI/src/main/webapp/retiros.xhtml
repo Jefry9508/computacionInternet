@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:panel header="Registro Retiros">
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel value="Código:" />
+				<p:inputText id="txtCodigo" binding="#{retirosView.txtCodigo}" />
+
+
+				<p:outputLabel value="Número de cuenta:" />
+				<p:inputText id="txtCuenta" binding="#{retirosView.txtCuenta}" />
+				
+				
+				<p:outputLabel value="Cédula Usuario:" />
+				<p:inputText id="txtUsuario" binding="#{retirosView.txtUsuario}" />
+				
+				
+				<p:outputLabel value="Valor:" />
+				<p:inputText id="txtValor" binding="#{retirosView.txtValor}" />
+				
+				<p:outputLabel value="Descripción:" />
+				<p:inputTextarea id="txtDescripcion" binding="#{retirosView.txtDescripcion}" />
+
+
+			</h:panelGrid>
+		</p:panel>
+		<p:commandButton id="btnGuardar" value="Guardar"
+			action="#{retirosView.actionGuardar()}" />
+
+		<p:commandButton id="btnActualizar" value="Actualizar"
+			action="#{retirosView.actionActualizar()}" />
+
+		<p:commandButton id="btnBorrar" value="Borrar"
+			action="#{retirosView.actionBorrar()}" />
+
+		<p:commandButton id="btnBuscar" value="Buscar"
+			action="#{retirosView.actionBuscar()}" />
+
+	</h:form>
+
+
+</h:body>
+</html>

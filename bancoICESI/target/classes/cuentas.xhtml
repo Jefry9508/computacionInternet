@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:panel header="Registro Cuenta">
+			<h:panelGrid columns="2" cellpadding="5">
+
+				<p:outputLabel value="Número de cuenta:" />
+				<p:inputText id="txtCueNumero" binding="#{cuentaView.txtCueNumero}" />
+				
+				
+				<p:outputLabel value="ID Cliente:" />
+				<p:inputText id="txtCliente" binding="#{cuentaView.txtCliente}" />
+
+
+				<p:outputLabel value="Saldo:" />
+				<p:inputText id="txtSaldo" binding="#{cuentaView.txtSaldo}" />
+				
+				
+				<p:outputLabel value="Activa:" />
+				<p:inputText id="txtActiva" binding="#{cuentaView.txtActiva}" />
+
+
+				<p:outputLabel value="Clave:" />
+				<p:password id="txtClave" binding="#{cuentaView.txtClave}" />
+
+			</h:panelGrid>
+		</p:panel>
+		<p:commandButton id="btnGuardar" value="Guardar"
+			action="#{cuentaView.actionGuardar()}" />
+
+		<p:commandButton id="btnActualizar" value="Actualizar"
+			action="#{cuentaView.actionActualizar()}" />
+
+		<p:commandButton id="btnBorrar" value="Borrar"
+			action="#{cuentaView.actionBorrar()}" />
+
+		<p:commandButton id="btnBuscar" value="Buscar"
+			action="#{cuentaView.actionBuscar()}" />
+
+	</h:form>
+
+
+</h:body>
+</html>
