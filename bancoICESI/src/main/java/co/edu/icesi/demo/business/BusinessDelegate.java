@@ -177,31 +177,31 @@ public class BusinessDelegate implements IBusinessDelegate {
 	}
 
 	@Override
-	public void saveCuentas(Cuentas entity) {
+	public void saveCuentas(Cuentas entity) throws Exception {
 		cuentasLogic.save(entity);
 
 	}
 
 	@Override
-	public void updateCuentas(Cuentas entity) {
+	public void updateCuentas(Cuentas entity) throws Exception {
 		cuentasLogic.update(entity);
 
 	}
 
 	@Override
-	public void deleteCuentas(String id) {
+	public void deleteCuentas(String id) throws Exception {
 		cuentasLogic.delete(id);
 
 	}
 
 	@Override
-	public Cuentas findByIdCuentas(String id) {
+	public Cuentas findByIdCuentas(String id) throws Exception {
 		// TODO Auto-generated method stub
 		return cuentasLogic.findById(id);
 	}
 
 	@Override
-	public List<Cuentas> findAllCuentas() {
+	public List<Cuentas> findAllCuentas() throws Exception {
 		// TODO Auto-generated method stub
 		return cuentasLogic.findAll();
 	}
@@ -237,31 +237,31 @@ public class BusinessDelegate implements IBusinessDelegate {
 	}
 
 	@Override
-	public void saveRetiros(Retiros entity) {
+	public void saveRetiros(Retiros entity) throws Exception {
 		retirosLogic.save(entity);
 
 	}
 
 	@Override
-	public void updateRetiros(Retiros entity) {
+	public void updateRetiros(Retiros entity) throws Exception {
 		retirosLogic.update(entity);
 
 	}
 
 	@Override
-	public void deleteRetiros(RetirosId entity) {
+	public void deleteRetiros(RetirosId entity) throws Exception {
 		retirosLogic.delete(entity);
 
 	}
 
 	@Override
-	public Retiros findByIdRetiros(RetirosId entity) {
+	public Retiros findByIdRetiros(RetirosId entity) throws Exception {
 		// TODO Auto-generated method stub
 		return retirosLogic.findById(entity);
 	}
 
 	@Override
-	public List<Retiros> findAllRetiros() {
+	public List<Retiros> findAllRetiros() throws Exception {
 		// TODO Auto-generated method stub
 		return retirosLogic.findAll();
 	}

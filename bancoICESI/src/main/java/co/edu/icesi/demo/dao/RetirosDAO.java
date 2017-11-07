@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import co.edu.icesi.demo.modelo.Cuentas;
 import co.edu.icesi.demo.modelo.Retiros;
 import co.edu.icesi.demo.modelo.RetirosId;
 
@@ -17,6 +18,7 @@ public class RetirosDAO implements IRetirosDAO {
 
 	@Override
 	public void save(Retiros entity) {
+		Cuentas cuenta = entity.getCuentas();
 		entityManager.persist(entity);
 
 	}

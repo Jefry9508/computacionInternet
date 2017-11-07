@@ -4,6 +4,7 @@ package co.edu.icesi.demo.modelo;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -61,7 +62,7 @@ public class Cuentas implements java.io.Serializable {
 		this.cueNumero = cueNumero;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cli_id", nullable = false)
 	public Clientes getClientes() {
 		return this.clientes;

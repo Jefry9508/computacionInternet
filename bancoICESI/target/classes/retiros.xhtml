@@ -4,45 +4,193 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
+	<title>Banco Icesi - Retiros</title>
 </h:head>
 
 <h:body>
 	<h:form>
-		<p:panel header="Registro Retiros">
-			<h:panelGrid columns="2" cellpadding="5">
-				<p:outputLabel value="Código:" />
-				<p:inputText id="txtCodigo" binding="#{retirosView.txtCodigo}" />
+
+		<p:panel header="Gestión Retiros">
+			<p:tabView orientation="left">
+				<p:tab title="Registro">
+					<p:growl id="growl3" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Identificador:" />
+							<p:inputText id="txtId" binding="#{retirosView.txtCodigo}" />
 
 
-				<p:outputLabel value="Número de cuenta:" />
-				<p:inputText id="txtCuenta" binding="#{retirosView.txtCuenta}" />
-				
-				
-				<p:outputLabel value="Cédula Usuario:" />
-				<p:inputText id="txtUsuario" binding="#{retirosView.txtUsuario}" />
-				
-				
-				<p:outputLabel value="Valor:" />
-				<p:inputText id="txtValor" binding="#{retirosView.txtValor}" />
-				
-				<p:outputLabel value="Descripción:" />
-				<p:inputTextarea id="txtDescripcion" binding="#{retirosView.txtDescripcion}" />
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCuenta" binding="#{retirosView.txtCuenta}" />
 
 
-			</h:panelGrid>
+							<p:outputLabel value="Id Usuario:" />
+							<p:inputText id="txtUsuario"
+								binding="#{retirosView.txtUsuario}" />
+
+
+							<p:outputLabel value="Valor:" />
+							<p:inputText id="txtValor"
+								binding="#{retirosView.txtValor}" />
+
+							<p:outputLabel value="Descripción:" />
+							<p:inputTextarea id="txtDescripcion" binding="#{retirosView.txtDescripcion}" />
+
+						</h:panelGrid>
+						<p:commandButton id="btnGuardar" value="Guardar"
+							action="#{retirosView.actionGuardar()}" update="growl3" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Actulización">
+					<p:growl id="growl2" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Identificador:" />
+							<p:inputText id="txtId1" binding="#{retirosView.txtCodigo1}" />
+
+
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCuenta1" binding="#{retirosView.txtCuenta1}" />
+
+
+							<p:outputLabel value="Id Usuario:" />
+							<p:inputText id="txtUsuario1"
+								binding="#{retirosView.txtUsuario1}" />
+
+
+							<p:outputLabel value="Valor:" />
+							<p:inputText id="txtValor1"
+								binding="#{retirosView.txtValor1}" />
+
+							<p:outputLabel value="Descripción:" />
+							<p:inputTextarea id="txtDescripcion1" binding="#{retirosView.txtDescripcion1}" />
+
+						</h:panelGrid>
+						<p:commandButton id="btnActualizar" value="Actualizar"
+							action="#{retirosView.actionActualizar()}" update="growl2" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Eliminar">
+					<p:growl id="growl1" showDetail="true" sticky="true" />
+
+					<p:panel id="panel">
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="Identificador:" />
+							<p:inputText id="txtId2" binding="#{retirosView.txtCodigo2}" />
+							
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCuenta2" binding="#{retirosView.txtCuenta2}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBorrar" value="Borrar"
+							action="#{retirosView.actionBorrar()}" update="growl1">
+
+						</p:commandButton>
+					</p:panel>
+
+				</p:tab>
+
+
+				<p:tab title="Buscar">
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="Identificador:" />
+							<p:inputText id="txtId3" binding="#{retirosView.txtCodigo3}" />
+							
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCuenta3" binding="#{retirosView.txtCuenta3}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBuscar" value="Buscar"
+							action="#{retirosView.actionBuscar()}" ajax="false">
+
+						</p:commandButton>
+					</p:panel>
+
+					<p:growl id="growl" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Identificador: " />
+							<h:outputText id="b1" value="#{retirosView.id}" />
+
+
+							<p:outputLabel value="No. Cuenta: " />
+							<h:outputText id="b2" value="#{retirosView.cuenta}" />
+
+
+							<p:outputLabel value="Usuario: " />
+							<h:outputText id="b3" value="#{retirosView.usuario}" />
+
+
+							<p:outputLabel value="Valor: " />
+							<h:outputText id="b4" value="#{retirosView.valor}" />
+
+							<p:outputLabel value="Fecha: " />
+							<h:outputText id="b5" value="#{retirosView.fecha}" />
+
+							<p:outputLabel value="Descripción: " />
+							<h:outputText id="b6" value="#{retirosView.descripcion}" />
+
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+				<p:tab title="Información retiros">
+
+					<p:panel>
+						<h:panelGrid columns="1" cellpadding="2">
+
+							<p:commandButton value="Actualizar"
+								action="#{retirosView.actualizarRetirosTablas()}"
+								id="buttonUpdateTable" update="growl"
+								icon="ui-icon-arrowrefresh-1-s" ajax="false" />
+
+							<p:dataTable var="table" value="#{retirosView.retirosTabla}"
+								scrollWidth="800" scrollHeight="300" scrollable="true"
+								paginator="true" rowsPerPageTemplate="10,20,30">
+								<p:column headerText="Identificador">
+									<h:outputText value="#{table.id.retCodigo}" />
+								</p:column>
+
+								<p:column headerText="No. Cuenta">
+									<h:outputText value="#{table.cuentas.cueNumero}" />
+								</p:column>
+
+								<p:column headerText="Usuario">
+									<h:outputText value="#{table.usuarios.usuNombre}" />
+								</p:column>
+
+								<p:column headerText="Valor">
+									<h:outputText value="#{table.retValor}" />
+								</p:column>
+
+								<p:column headerText="Fecha">
+									<h:outputText value="#{table.retFecha}" />
+								</p:column>
+
+								<p:column headerText="Descripción" width="200">
+									<h:outputText value="#{table.retDescripcion}" />
+								</p:column>
+							</p:dataTable>
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+
+			</p:tabView>
 		</p:panel>
-		<p:commandButton id="btnGuardar" value="Guardar"
-			action="#{retirosView.actionGuardar()}" />
-
-		<p:commandButton id="btnActualizar" value="Actualizar"
-			action="#{retirosView.actionActualizar()}" />
-
-		<p:commandButton id="btnBorrar" value="Borrar"
-			action="#{retirosView.actionBorrar()}" />
-
-		<p:commandButton id="btnBuscar" value="Buscar"
-			action="#{retirosView.actionBuscar()}" />
 
 	</h:form>
 

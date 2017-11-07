@@ -30,7 +30,7 @@ public class CuentasLogic implements ICuentasLogic {
 	private IClientesLogic clientesDAO;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void save(Cuentas entity) {
+	public void save(Cuentas entity) throws Exception {
 		try {
 
 			log.info("inicia saveCuentas");
@@ -97,7 +97,7 @@ public class CuentasLogic implements ICuentasLogic {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void update(Cuentas entity) {
+	public void update(Cuentas entity) throws Exception {
 		try {
 
 			log.info("inicia saveCuentas");
@@ -164,7 +164,7 @@ public class CuentasLogic implements ICuentasLogic {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void delete(String num) {
+	public void delete(String num) throws Exception {
 		try {
 			log.info("deleteCuentas inició");
 			if (num == null || num.equals("")) {
@@ -200,7 +200,7 @@ public class CuentasLogic implements ICuentasLogic {
 	}
 
 	@TransactionAttribute
-	public Cuentas findById(String id) {
+	public Cuentas findById(String id) throws Exception {
 		Cuentas cuentas = null;
 
 		try {
@@ -219,7 +219,7 @@ public class CuentasLogic implements ICuentasLogic {
 	}
 
 	@TransactionAttribute
-	public List<Cuentas> findAll() {
+	public List<Cuentas> findAll() throws Exception {
 
 		return cuentasDAO.findAll();
 	}

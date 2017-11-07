@@ -1,5 +1,6 @@
 package co.edu.icesi.demo.modelo.control;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -34,7 +35,7 @@ public class RetirosLogic implements IRetirosLogic {
 	private IUsuariosDAO usuariosDAO;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void save(Retiros entity) {
+	public void save(Retiros entity) throws Exception {
 		try {
 
 			log.info("saveRetiros inició");
@@ -117,7 +118,9 @@ public class RetirosLogic implements IRetirosLogic {
 				throw new Exception("La descripción no debe ser mayor a 50 caracteres");
 			}
 
+			cuentas.setCueSaldo(cuentas.getCueSaldo().subtract(entity.getRetValor()));
 			retirosDAO.save(entity);
+			cuentasDAO.update(cuentas);
 
 			log.info("Guardó satisfactoriamente");
 
@@ -128,7 +131,7 @@ public class RetirosLogic implements IRetirosLogic {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void update(Retiros entity) {
+	public void update(Retiros entity) throws Exception {
 		try {
 
 			log.info("updateRetiros inició");
@@ -211,7 +214,10 @@ public class RetirosLogic implements IRetirosLogic {
 				throw new Exception("La descripción no debe ser mayor a 50 caracteres");
 			}
 
+			BigDecimal bg = entity.getRetValor().subtract(retiros.getRetValor());
+			cuentas.setCueSaldo(cuentas.getCueSaldo().subtract(bg));
 			retirosDAO.update(entity);
+			cuentasDAO.update(cuentas);
 
 			log.info("Actualizó satisfactoriamente");
 
@@ -222,7 +228,7 @@ public class RetirosLogic implements IRetirosLogic {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void delete(RetirosId entity) {
+	public void delete(RetirosId entity) throws Exception {
 		try {
 			log.info("deleteRetiros inició");
 
@@ -243,8 +249,10 @@ public class RetirosLogic implements IRetirosLogic {
 			if (retiros == null) {
 				throw new Exception("No existe un retiro con el código " + entity.getRetCodigo());
 			}
-
+			Cuentas cuenta = retiros.getCuentas();
+			cuenta.setCueSaldo(cuenta.getCueSaldo().add(retiros.getRetValor()));
 			retirosDAO.delete(retiros);
+			cuentasDAO.save(cuenta);
 
 			log.info("eliminó satisfactoriamente");
 
@@ -255,7 +263,7 @@ public class RetirosLogic implements IRetirosLogic {
 	}
 
 	@TransactionAttribute
-	public Retiros findById(RetirosId entity) {
+	public Retiros findById(RetirosId entity) throws Exception {
 		Retiros retiros = null;
 
 		try {
@@ -283,7 +291,7 @@ public class RetirosLogic implements IRetirosLogic {
 	}
 
 	@TransactionAttribute
-	public List<Retiros> findAll() {
+	public List<Retiros> findAll() throws Exception {
 
 		return retirosDAO.findAll();
 	}

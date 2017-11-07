@@ -4,46 +4,179 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<title>Banco Icesi - Cuentas</title>
 
 </h:head>
 
 <h:body>
 	<h:form>
-		<p:panel header="Registro Cuenta">
-			<h:panelGrid columns="2" cellpadding="5">
 
-				<p:outputLabel value="Número de cuenta:" />
-				<p:inputText id="txtCueNumero" binding="#{cuentaView.txtCueNumero}" />
-				
-				
-				<p:outputLabel value="ID Cliente:" />
-				<p:inputText id="txtCliente" binding="#{cuentaView.txtCliente}" />
+		<p:panel header="Gestión Cuentas">
+			<p:tabView orientation="left">
+				<p:tab title="Registro">
+					<p:growl id="growl3" showDetail="true" sticky="true" />
 
-
-				<p:outputLabel value="Saldo:" />
-				<p:inputText id="txtSaldo" binding="#{cuentaView.txtSaldo}" />
-				
-				
-				<p:outputLabel value="Activa:" />
-				<p:inputText id="txtActiva" binding="#{cuentaView.txtActiva}" />
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCueNumero"
+								binding="#{cuentaView.txtCueNumero}" />
 
 
-				<p:outputLabel value="Clave:" />
-				<p:password id="txtClave" binding="#{cuentaView.txtClave}" />
+							<p:outputLabel value="Id Cliente:" />
+							<p:inputText id="txtCliente" binding="#{cuentaView.txtCliente}" />
 
-			</h:panelGrid>
+
+							<p:outputLabel value="Saldo:" />
+							<p:inputText id="txtSaldo" binding="#{cuentaView.txtSaldo}" />
+
+							<p:outputLabel value="Activa:" />
+							<p:inputText id="txtActiva" binding="#{cuentaView.txtActiva}" />
+
+							<p:outputLabel value="Clave:" />
+							<p:password id="txtClave" binding="#{cuentaView.txtClave}" />
+
+
+						</h:panelGrid>
+						<p:commandButton id="btnGuardar" value="Guardar"
+							action="#{cuentaView.actionGuardar()}" update="growl3" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Actulización">
+					<p:growl id="growl2" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCueNumero1"
+								binding="#{cuentaView.txtCueNumero1}" />
+
+
+							<p:outputLabel value="Id Cliente:" />
+							<p:inputText id="txtCliente1" binding="#{cuentaView.txtCliente1}" />
+
+
+							<p:outputLabel value="Saldo:" />
+							<p:inputText id="txtSaldo1" binding="#{cuentaView.txtSaldo1}" />
+
+							<p:outputLabel value="Activa:" />
+							<p:inputText id="txtActiva1" binding="#{cuentaView.txtActiva1}" />
+
+							<p:outputLabel value="Clave:" />
+							<p:password id="txtClave1" binding="#{cuentaView.txtClave1}" />
+
+
+						</h:panelGrid>
+						<p:commandButton id="btnActualizar" value="Actualizar"
+							action="#{cuentaView.actionActualizar()}" update="growl2" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Eliminar">
+					<p:growl id="growl1" showDetail="true" sticky="true" />
+
+					<p:panel id="panel">
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCueNumero2" binding="#{cuentaView.txtCueNumero2}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBorrar" value="Borrar"
+							action="#{cuentaView.actionBorrar()}" update="growl1">
+
+						</p:commandButton>
+					</p:panel>
+
+				</p:tab>
+
+
+				<p:tab title="Buscar">
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCueNumero3" binding="#{cuentaView.txtCueNumero3}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBuscar" value="Buscar"
+							action="#{cuentaView.actionBuscar()}" ajax="false">
+
+						</p:commandButton>
+					</p:panel>
+
+					<p:growl id="growl" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="No. Cuenta: " />
+							<h:outputText id="b1" value="#{cuentaView.numCuenta}" />
+
+
+							<p:outputLabel value="Cliente: " />
+							<h:outputText id="b2" value="#{cuentaView.cliente}" />
+
+
+							<p:outputLabel value="Saldo: " />
+							<h:outputText id="b3" value="#{cuentaView.saldo}" />
+
+
+							<p:outputLabel value="Activa: " />
+							<h:outputText id="b4" value="#{cuentaView.activa}" />
+
+							<p:outputLabel value="Clave: " />
+							<h:outputText id="b5" value="#{cuentaView.clave}" />
+
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+				<p:tab title="Información cuentas">
+
+					<p:panel>
+						<h:panelGrid columns="1" cellpadding="2">
+
+							<p:commandButton value="Actualizar"
+								action="#{cuentaView.actualizarCuentasTablas()}"
+								id="buttonUpdateTable" update="growl"
+								icon="ui-icon-arrowrefresh-1-s" ajax="false" />
+
+							<p:dataTable var="table" value="#{cuentaView.cuentasTabla}"
+								scrollWidth="800" scrollHeight="300" scrollable="true"
+								paginator="true" rowsPerPageTemplate="10,20,30">
+								<p:column headerText="No. Cuenta">
+									<h:outputText value="#{table.cueNumero}" />
+								</p:column>
+
+								<p:column headerText="Cliente">
+									<h:outputText value="#{table.clientes.cliNombre}" />
+								</p:column>
+
+								<p:column headerText="Saldo">
+									<h:outputText value="#{table.cueSaldo}" />
+								</p:column>
+
+								<p:column headerText="Activa">
+									<h:outputText value="#{table.cueActiva}" />
+								</p:column>
+
+								<p:column headerText="Clave">
+									<h:outputText value="#{table.cueClave}" />
+								</p:column>
+							</p:dataTable>
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+
+			</p:tabView>
 		</p:panel>
-		<p:commandButton id="btnGuardar" value="Guardar"
-			action="#{cuentaView.actionGuardar()}" />
-
-		<p:commandButton id="btnActualizar" value="Actualizar"
-			action="#{cuentaView.actionActualizar()}" />
-
-		<p:commandButton id="btnBorrar" value="Borrar"
-			action="#{cuentaView.actionBorrar()}" />
-
-		<p:commandButton id="btnBuscar" value="Buscar"
-			action="#{cuentaView.actionBuscar()}" />
 
 	</h:form>
 

@@ -117,8 +117,7 @@ public class UsuarioView {
 
 	public String actionBorrar() {
 		try {
-			Usuarios usuarios = businessDelegate.findById(Long.parseLong(txtCedula2.getValue().toString()));
-			businessDelegate.delete(usuarios.getUsuCedula());
+			businessDelegate.delete(Long.parseLong(txtCedula2.getValue().toString()));
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado exitosamente", ""));
 		} catch (Exception e) {
@@ -342,10 +341,6 @@ public class UsuarioView {
 	public String actualizarUsuariosTablas() {
 		usuariosTabla = businessDelegate.findAllUsuarios();
 		return "";
-	}
-
-	public void metodoPrueba() {
-
 	}
 
 }

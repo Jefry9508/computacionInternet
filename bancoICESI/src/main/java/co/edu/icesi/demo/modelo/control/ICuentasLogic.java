@@ -9,14 +9,14 @@ import co.edu.icesi.demo.modelo.Cuentas;
 @Local
 public interface ICuentasLogic {
 
-	public void save(Cuentas entity);
+	public void save(Cuentas entity) throws Exception;
 
-	public void update(Cuentas entity);
+	public void update(Cuentas entity) throws Exception;
 
-	public void delete(String id);
+	public void delete(String id) throws Exception;
 
-	public Cuentas findById(String id);
+	public Cuentas findById(String id) throws Exception;
 
-	public List<Cuentas> findAll();
+	public List<Cuentas> findAll() throws Exception;
 
 }

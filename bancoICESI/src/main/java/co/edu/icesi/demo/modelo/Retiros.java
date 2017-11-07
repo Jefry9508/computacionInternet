@@ -3,6 +3,7 @@ package co.edu.icesi.demo.modelo;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -63,7 +64,7 @@ public class Retiros implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cue_numero", nullable = false, insertable = false, updatable = false)
 	public Cuentas getCuentas() {
 		return this.cuentas;
@@ -73,7 +74,7 @@ public class Retiros implements java.io.Serializable {
 		this.cuentas = cuentas;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usu_cedula")
 	public Usuarios getUsuarios() {
 		return this.usuarios;

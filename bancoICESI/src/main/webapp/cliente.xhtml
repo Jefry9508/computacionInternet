@@ -4,52 +4,200 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<title>Banco Icesi - Clientes</title>
 
 </h:head>
 
 <h:body>
 	<h:form>
-		<p:panel header="Registro Cliente">
-			<h:panelGrid columns="2" cellpadding="5">
-				<p:outputLabel value="Nombre:" />
-				<p:inputText id="txtNombre" binding="#{clienteView.txtNombre}" />
+
+		<p:panel header="Gestión Clientes">
+			<p:tabView orientation="left">
+				<p:tab title="Registro">
+					<p:growl id="growl3" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="6">
+							<p:outputLabel value="Identificación:" />
+							<p:inputText id="txtId" binding="#{clienteView.txtId}" />
+							
+							<p:outputLabel value="Tipo Documento:" />
+							<p:selectOneMenu id="tipoDoc" value="#{clienteView.tipoDoc}">
+								<f:selectItem itemLabel="Opciones" itemValue="" />
+								<f:selectItems value="#{clienteView.listTiposDocumentos}" />
+							</p:selectOneMenu>
 
 
-				<p:outputLabel value="Identificación:" />
-				<p:inputText id="txtId" binding="#{clienteView.txtId}" />
-				
-				<p:outputLabel value="Tipo documento:" />
-				<p:selectOneMenu id="tipoDoc" value="#{clienteView.tipoDoc}">
-					<f:selectItem itemLabel="Opciones" itemValue="" />
-					<f:selectItems value="#{clienteView.listTiposDocumentos}" />
-				</p:selectOneMenu>
+							<p:outputLabel value="Nombre:" />
+							<p:inputText id="txtNombre" binding="#{clienteView.txtNombre}" />
 
 
-				<p:outputLabel value="Dirección:" />
-				<p:inputText id="txtDireccion" binding="#{clienteView.txtDireccion}" />
+							<p:outputLabel value="Dirección:" />
+							<p:inputText id="txtDireccion" binding="#{clienteView.txtDireccion}" />
 
 
-				<p:outputLabel value="Teléfono:" />
-				<p:inputText id="txtTelefono" binding="#{clienteView.txtTelefono}" />
-				
-				<p:outputLabel value="Email:" />
-				<p:inputText id="txtEmail" binding="#{clienteView.txtEmail}" />
+							<p:outputLabel value="Teléfono:" />
+							<p:inputText id="txtTeléfono" binding="#{clienteView.txtTelefono}" />
+							
+							<p:outputLabel value="E-mail:" />
+							<p:inputText id="txtEmail" binding="#{clienteView.txtEmail}" />
 
 
 
-			</h:panelGrid>
+						</h:panelGrid>
+						<p:commandButton id="btnGuardar" value="Guardar"
+							action="#{clienteView.actionGuardar()}" update="growl3" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Actulización">
+					<p:growl id="growl2" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="6">
+							<p:outputLabel value="Identificación:" />
+							<p:inputText id="txtId1" binding="#{clienteView.txtId1}" />
+							
+							<p:outputLabel value="Tipo Documento:" />
+							<p:selectOneMenu id="tipoDoc1" value="#{clienteView.tipoDoc1}">
+								<f:selectItem itemLabel="Opciones" itemValue="" />
+								<f:selectItems value="#{clienteView.listTiposDocumentos}" />
+							</p:selectOneMenu>
+
+
+							<p:outputLabel value="Nombre:" />
+							<p:inputText id="txtNombre1" binding="#{clienteView.txtNombre1}" />
+
+
+							<p:outputLabel value="Dirección:" />
+							<p:inputText id="txtDireccion1" binding="#{clienteView.txtDireccion1}" />
+
+
+							<p:outputLabel value="Teléfono:" />
+							<p:inputText id="txtTeléfono1" binding="#{clienteView.txtTelefono1}" />
+							
+							<p:outputLabel value="E-mail:" />
+							<p:inputText id="txtEmail1" binding="#{clienteView.txtEmail1}" />
+
+
+
+						</h:panelGrid>
+						<p:commandButton id="btnActualizar" value="Actualizar"
+							action="#{clienteView.actionActualizar()}" update="growl2" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Eliminar">
+					<p:growl id="growl1" showDetail="true" sticky="true" />
+
+					<p:panel id="panel">
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="Identificación:" />
+							<p:inputText id="txtId2" binding="#{clienteView.txtId2}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBorrar" value="Borrar"
+							action="#{clienteView.actionBorrar()}" update="growl1">
+
+						</p:commandButton>
+					</p:panel>
+
+				</p:tab>
+
+
+				<p:tab title="Buscar">
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="Identificación:" />
+							<p:inputText id="txtId3" binding="#{clienteView.txtId3}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBuscar" value="Buscar"
+							action="#{clienteView.actionBuscar()}" ajax="false">
+
+						</p:commandButton>
+					</p:panel>
+
+					<p:growl id="growl" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="6">
+							<p:outputLabel value="Identificación: " />
+							<h:outputText id="b1" value="#{clienteView.id}" />
+
+
+							<p:outputLabel value="Tipo Documento: " />
+							<h:outputText id="b2" value="#{clienteView.tipoDocumento}" />
+
+
+							<p:outputLabel value="Nombre: " />
+							<h:outputText id="b3" value="#{clienteView.nombre}" />
+
+
+							<p:outputLabel value="Dirección: " />
+							<h:outputText id="b4" value="#{clienteView.direccion}" />
+
+							<p:outputLabel value="Teléfono: " />
+							<h:outputText id="b5" value="#{clienteView.telefono}" />
+							
+							<p:outputLabel value="E-mail: " />
+							<h:outputText id="b6" value="#{clienteView.email}" />
+
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+				<p:tab title="Información clientes">
+
+					<p:panel>
+						<h:panelGrid columns="1" cellpadding="2">
+
+							<p:commandButton value="Actualizar"
+								action="#{clienteView.actualizarClientesTablas()}"
+								id="buttonUpdateTable" update="growl"
+								icon="ui-icon-arrowrefresh-1-s" ajax="false" />
+
+							<p:dataTable var="table" value="#{clienteView.clientesTabla}"
+								scrollWidth="800" scrollHeight="300" scrollable="true" paginator="true"
+								rowsPerPageTemplate="10,20,30">
+								<p:column headerText="Identificación">
+									<h:outputText value="#{table.cliId}" />
+								</p:column>
+
+								<p:column headerText="Tipo Documento">
+									<h:outputText value="#{table.tiposDocumentos.tdocNombre}" />
+								</p:column>
+
+								<p:column headerText="Nombre">
+									<h:outputText value="#{table.cliNombre}" />
+								</p:column>
+
+								<p:column headerText="Dirección">
+									<h:outputText value="#{table.cliDireccion}" />
+								</p:column>
+
+								<p:column headerText="Teléfono">
+									<h:outputText value="#{table.cliTelefono}" />
+								</p:column>
+								
+								<p:column headerText="E-mail" width="200">
+									<h:outputText value="#{table.cliMail}" />
+								</p:column>
+							</p:dataTable>
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+
+			</p:tabView>
 		</p:panel>
-		<p:commandButton id="btnGuardar" value="Guardar"
-			action="#{clienteView.actionGuardar()}" />
-
-		<p:commandButton id="btnActualizar" value="Actualizar"
-			action="#{clienteView.actionActualizar()}" />
-
-		<p:commandButton id="btnBorrar" value="Borrar"
-			action="#{clienteView.actionBorrar()}" />
-
-		<p:commandButton id="btnBuscar" value="Buscar"
-			action="#{clienteView.actionBuscar()}" />
 
 	</h:form>
 

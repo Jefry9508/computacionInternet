@@ -116,11 +116,11 @@ public class ClientesLogic implements IClientesLogic {
 				throw new Exception("El nombre del cliente es obligatorio");
 			}
 
-			if (!Utilities.checkNumberAndCheckWithPrecisionAndScale("" + entity.getCliNombre(), 50, 0)) {
+			if (!Utilities.checkWordAndCheckWithlength("" + entity.getCliNombre(), 50)) {
 				throw new Exception("El tamaño del nombre del cliente no debe ser mayor a 50 digitos");
 			}
 
-			if (entity.getTiposDocumentos() != null) {
+			if (entity.getTiposDocumentos() == null) {
 				throw new Exception("El tipo de documento es obligatorio");
 			}
 
@@ -128,7 +128,7 @@ public class ClientesLogic implements IClientesLogic {
 				throw new Exception("La dirección del cliente es obligatorio");
 			}
 
-			if (!Utilities.checkNumberAndCheckWithPrecisionAndScale("" + entity.getCliDireccion(), 50, 0)) {
+			if (!Utilities.checkWordAndCheckWithlength("" + entity.getCliDireccion(), 50)) {
 				throw new Exception("El tamaño de la dirección del cliente no debe ser mayor a 50 digitos");
 			}
 
@@ -136,7 +136,7 @@ public class ClientesLogic implements IClientesLogic {
 				throw new Exception("El teléfono del cliente es obligatorio");
 			}
 
-			if (!Utilities.checkNumberAndCheckWithPrecisionAndScale("" + entity.getCliTelefono(), 50, 0)) {
+			if (!Utilities.checkWordAndCheckWithlength("" + entity.getCliTelefono(), 50)) {
 				throw new Exception("El tamaño del teléfono del cliente no debe ser mayor a 10 digitos");
 			}
 

@@ -3,9 +3,11 @@ package co.edu.icesi.demo.vista;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
@@ -20,20 +22,35 @@ import co.edu.icesi.demo.modelo.TiposDocumentos;
 @ViewScoped
 public class ClienteView {
 
-	@ManagedProperty("#{BusinessDelegate}")
+	@EJB
 	private IBusinessDelegate businessDelegate;
 
 	private InputText txtNombre;
 	private InputText txtId;
 	private InputText txtDireccion;
+	private InputText txtTelefono;
 	private InputText txtEmail;
+	private String tipoDoc;
+	private InputText txtNombre1;
+	private InputText txtId1;
+	private InputText txtDireccion1;
+	private InputText txtTelefono1;
+	private InputText txtEmail1;
+	private String tipoDoc1;
+	private InputText txtId2;
+	private InputText txtId3;
+	private String nombre;
+	private String id;
+	private String tipoDocumento;
+	private String direccion;
+	private String telefono;
+	private String email;
 	private CommandButton btnGuardar;
 	private CommandButton btnActualizar;
 	private CommandButton btnBorrar;
 	private CommandButton btnBuscar;
-	private InputText txtTelefono;
-	private String tipoDoc;
 	private List<String> listTiposDocumentos;
+	private List<Clientes> clientesTabla;
 
 	public IBusinessDelegate getBusinessDelegate() {
 		return businessDelegate;
@@ -62,9 +79,11 @@ public class ClienteView {
 			clientes.setCliTelefono(txtTelefono.getValue().toString());
 			clientes.setTiposDocumentos(tiposDocumentos);
 			businessDelegate.saveClientes(clientes);
-			log.info("Agrego correctamente");
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Agregado exitosamente", ""));
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 		}
 
 		return "";
@@ -72,18 +91,80 @@ public class ClienteView {
 
 	public String actionActualizar() {
 
+		try {
+			Clientes clientes = new Clientes();
+			TiposDocumentos tiposDocumentos = new TiposDocumentos();
+			String[] tipoUsuarioArray = tipoDoc1.split("-");
+			log.info(tipoUsuarioArray[0]);
+			log.info(tipoUsuarioArray[1]);
+			tiposDocumentos.setTdocCodigo((Long.parseLong(tipoUsuarioArray[0])));
+			tiposDocumentos.setTdocNombre(tipoUsuarioArray[1]);
+			clientes.setCliNombre(txtNombre1.getValue().toString());
+			clientes.setTiposDocumentos(tiposDocumentos);
+			clientes.setCliDireccion(txtDireccion1.getValue().toString());
+			clientes.setCliMail(txtEmail1.getValue().toString());
+			clientes.setCliId(Long.parseLong(txtId1.getValue().toString()));
+			clientes.setCliTelefono(txtTelefono1.getValue().toString());
+			clientes.setTiposDocumentos(tiposDocumentos);
+			businessDelegate.updateClientes(clientes);
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Actualizado exitosamente", ""));
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		}
+
 		return "";
 	}
 
 	public String actionBorrar() {
-		log.info("Borro");
+		try {
+			businessDelegate.deleteClientes(Long.parseLong(txtId2.getValue().toString()));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado exitosamente", ""));
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de formato", e.getMessage()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		}
 
 		return "";
 	}
 
 	public String actionBuscar() {
-		log.info("Busco");
+		try {
+			Clientes cliente = businessDelegate.getClientesById(Long.parseLong(txtId3.getValue().toString()));
+			id = cliente.getCliId() + "";
+			nombre = cliente.getCliNombre();
+			tipoDocumento = cliente.getTiposDocumentos().getTdocNombre();
+			direccion = cliente.getCliDireccion();
+			telefono = cliente.getCliTelefono();
+			email = cliente.getCliMail();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de formato", e.getMessage()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		}
 
+		return "";
+	}
+
+	public String actualizarClientesTablas() {
+		try {
+			clientesTabla = businessDelegate.getClientes();
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+
+		}
 		return "";
 	}
 
@@ -183,6 +264,133 @@ public class ClienteView {
 
 	public void setTxtTelefono(InputText txtTelefono) {
 		this.txtTelefono = txtTelefono;
+	}
+
+	public InputText getTxtNombre1() {
+		return txtNombre1;
+	}
+
+	public void setTxtNombre1(InputText txtNombre1) {
+		this.txtNombre1 = txtNombre1;
+	}
+
+	public InputText getTxtId1() {
+		return txtId1;
+	}
+
+	public void setTxtId1(InputText txtId1) {
+		this.txtId1 = txtId1;
+	}
+
+	public InputText getTxtDireccion1() {
+		return txtDireccion1;
+	}
+
+	public void setTxtDireccion1(InputText txtDireccion1) {
+		this.txtDireccion1 = txtDireccion1;
+	}
+
+	public InputText getTxtTelefono1() {
+		return txtTelefono1;
+	}
+
+	public void setTxtTelefono1(InputText txtTelefono1) {
+		this.txtTelefono1 = txtTelefono1;
+	}
+
+	public InputText getTxtEmail1() {
+		return txtEmail1;
+	}
+
+	public void setTxtEmail1(InputText txtEmail1) {
+		this.txtEmail1 = txtEmail1;
+	}
+
+	public String getTipoDoc1() {
+		return tipoDoc1;
+	}
+
+	public void setTipoDoc1(String tipoDoc1) {
+		this.tipoDoc1 = tipoDoc1;
+	}
+
+	public InputText getTxtId2() {
+		return txtId2;
+	}
+
+	public void setTxtId2(InputText txtId2) {
+		this.txtId2 = txtId2;
+	}
+
+	public InputText getTxtId3() {
+		return txtId3;
+	}
+
+	public void setTxtId3(InputText txtId3) {
+		this.txtId3 = txtId3;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<Clientes> getClientesTabla() {
+		try {
+			clientesTabla = businessDelegate.getClientes();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		}
+		return clientesTabla;
+	}
+
+	public void setClientesTabla(List<Clientes> clientesTabla) {
+		this.clientesTabla = clientesTabla;
 	}
 
 }

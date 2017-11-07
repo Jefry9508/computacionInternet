@@ -64,15 +64,15 @@ public interface IBusinessDelegate {
 	public TiposDocumentos getTiposDocumentosById(Long codigo) throws Exception;
 
 	// -------------------Cuentas-------------------------------
-	public void saveCuentas(Cuentas entity);
+	public void saveCuentas(Cuentas entity) throws Exception;
 
-	public void updateCuentas(Cuentas entity);
+	public void updateCuentas(Cuentas entity) throws Exception;
 
-	public void deleteCuentas(String id);
+	public void deleteCuentas(String id) throws Exception;
 
-	public Cuentas findByIdCuentas(String id);
+	public Cuentas findByIdCuentas(String id) throws Exception;
 
-	public List<Cuentas> findAllCuentas();
+	public List<Cuentas> findAllCuentas() throws Exception;
 
 	// -------------------------Consignaciones----------------------------------
 	public void saveConsignaciones(Consignaciones entity);
@@ -86,14 +86,14 @@ public interface IBusinessDelegate {
 	public List<Consignaciones> findAllConsignaciones();
 
 	// ----------------------------Retiros--------------------------------------
-	public void saveRetiros(Retiros entity);
+	public void saveRetiros(Retiros entity) throws Exception;
 
-	public void updateRetiros(Retiros entity);
+	public void updateRetiros(Retiros entity) throws Exception;
 
-	public void deleteRetiros(RetirosId entity);
+	public void deleteRetiros(RetirosId entity) throws Exception;
 
-	public Retiros findByIdRetiros(RetirosId entity);
+	public Retiros findByIdRetiros(RetirosId entity) throws Exception;
 
-	public List<Retiros> findAllRetiros();
+	public List<Retiros> findAllRetiros() throws Exception;
 
 }

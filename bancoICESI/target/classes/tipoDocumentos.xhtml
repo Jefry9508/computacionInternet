@@ -4,33 +4,142 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<title>Banco Icesi</title>
+
 
 </h:head>
 
 <h:body>
 	<h:form>
-		<p:panel header="Registro Tipos documentos">
-			<h:panelGrid columns="2" cellpadding="2">
-				<p:outputLabel value="Id:" />
-				<p:inputText id="txtId" binding="#{tiposDocumentosView.txtId}" />
+
+		<p:panel header="Gestión Tipos Documentos">
+			<p:tabView orientation="left">
+				<p:tab title="Registro">
+					<p:growl id="growl3" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="2">
+							<p:outputLabel value="Código:" />
+							<p:inputText id="txtCodigo" binding="#{tiposDocumentosView.txtId}" />
 
 
-				<p:outputLabel value="Nombre:" />
-				<p:inputText id="txtNombre" binding="#{tiposDocumentosView.txtNombre}" />
+							<p:outputLabel value="Nombre:" />
+							<p:inputText id="txtNombre"
+								binding="#{tiposDocumentosView.txtNombre}" />
 
-			</h:panelGrid>
+						</h:panelGrid>
+						<p:commandButton id="btnGuardar" value="Guardar"
+							action="#{tiposDocumentosView.actionGuardar()}" update="growl3" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Actulización">
+					<p:growl id="growl2" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="2">
+							<p:outputLabel value="Código:" />
+							<p:inputText id="txtCodigo1"
+								binding="#{tiposDocumentosView.txtId1}" />
+
+
+							<p:outputLabel value="Nombre:" />
+							<p:inputText id="txtNombre1"
+								binding="#{tiposDocumentosView.txtNombre1}" />
+
+
+
+						</h:panelGrid>
+						<p:commandButton id="btnActualizar" value="Actualizar"
+							action="#{tiposDocumentosView.actionActualizar()}" update="growl2" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Eliminar">
+					<p:growl id="growl1" showDetail="true" sticky="true" />
+
+					<p:panel id="panel">
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="Código:" />
+							<p:inputText id="txtCodigo2"
+								binding="#{tiposDocumentosView.txtId2}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBorrar" value="Borrar"
+							action="#{tiposDocumentosView.actionBorrar()}" update="growl1">
+
+						</p:commandButton>
+					</p:panel>
+
+				</p:tab>
+
+
+				<p:tab title="Buscar">
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="Código:" />
+							<p:inputText id="txtCodigo3"
+								binding="#{tiposDocumentosView.txtId3}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBuscar" value="Buscar"
+							action="#{tiposDocumentosView.actionBuscar()}" ajax="false">
+
+						</p:commandButton>
+					</p:panel>
+
+					<p:growl id="growl" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="2">
+							<p:outputLabel value="Código: " />
+							<h:outputText id="b1" value="#{tiposDocumentosView.codigo}" />
+
+
+							<p:outputLabel value="Nombre: " />
+							<h:outputText id="b2" value="#{tiposDocumentosView.nombre}" />
+
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+				<p:tab title="Información Tipos Documentos">
+
+					<p:panel>
+						<h:panelGrid columns="1" cellpadding="2">
+
+							<p:commandButton value="Actualizar"
+								action="#{tiposDocumentosView.actualizarTiposDocumentosTabla()}"
+								id="buttonUpdateTable" update="growl"
+								icon="ui-icon-arrowrefresh-1-s" ajax="false" />
+
+							<p:dataTable var="table"
+								value="#{tiposDocumentosView.tiposDocumentosTabla}"
+								scrollWidth="true" paginator="true"
+								rowsPerPageTemplate="5,10,15">
+								<p:column headerText="Código">
+									<h:outputText value="#{table.tdocCodigo}" />
+								</p:column>
+
+								<p:column headerText="Nombre">
+									<h:outputText value="#{table.tdocNombre}" />
+								</p:column>
+
+							</p:dataTable>
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+
+			</p:tabView>
 		</p:panel>
-		<p:commandButton id="btnGuardar" value="Guardar"
-			action="#{tiposDocumentosView.actionGuardar()}" />
-
-		<p:commandButton id="btnActualizar" value="Actualizar"
-			action="#{tiposDocumentosView.actionActualizar()}" />
-
-		<p:commandButton id="btnBorrar" value="Borrar"
-			action="#{tiposDocumentosView.actionBorrar()}" />
-
-		<p:commandButton id="btnBuscar" value="Buscar"
-			action="#{tiposDocumentosView.actionBuscar()}" />
 
 	</h:form>
 

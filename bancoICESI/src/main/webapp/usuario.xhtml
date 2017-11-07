@@ -4,7 +4,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Banco Icesi</title>
+	<title>Banco Icesi - Usuarios</title>
 
 </h:head>
 
@@ -156,7 +156,7 @@
 								icon="ui-icon-arrowrefresh-1-s" ajax="false" />
 
 							<p:dataTable var="table" value="#{usuarioView.usuariosTabla}"
-								scrollWidth="true" paginator="true" rowsPerPageTemplate="5,10,15">
+								scrollWidth="800" scrollHeight="300" scrollable="true" paginator="true" rowsPerPageTemplate="10,20,30">
 								<p:column headerText="Cédula">
 									<h:outputText value="#{table.usuCedula}" />
 								</p:column>

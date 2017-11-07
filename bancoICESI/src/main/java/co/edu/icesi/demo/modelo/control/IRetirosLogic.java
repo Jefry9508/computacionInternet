@@ -10,14 +10,14 @@ import co.edu.icesi.demo.modelo.RetirosId;
 @Local
 public interface IRetirosLogic {
 
-	public void save(Retiros entity);
+	public void save(Retiros entity) throws Exception;
 
-	public void update(Retiros entity);
+	public void update(Retiros entity) throws Exception;
 
-	public void delete(RetirosId entity);
+	public void delete(RetirosId entity) throws Exception;
 
-	public Retiros findById(RetirosId entity);
+	public Retiros findById(RetirosId entity) throws Exception;
 
-	public List<Retiros> findAll();
+	public List<Retiros> findAll() throws Exception;
 
 }

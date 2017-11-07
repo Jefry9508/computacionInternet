@@ -3,6 +3,7 @@ package co.edu.icesi.demo.modelo;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -61,7 +62,7 @@ public class Clientes implements java.io.Serializable {
 		this.cliId = cliId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "tdoc_codigo", nullable = false)
 	public TiposDocumentos getTiposDocumentos() {
 		return this.tiposDocumentos;
