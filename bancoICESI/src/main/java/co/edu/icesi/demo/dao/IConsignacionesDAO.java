@@ -10,14 +10,14 @@ import co.edu.icesi.demo.modelo.ConsignacionesId;
 @Local
 public interface IConsignacionesDAO {
 
-	public void save(Consignaciones entity);
+	public void save(Consignaciones entity) throws Exception;
 
-	public void update(Consignaciones entity);
+	public void update(Consignaciones entity) throws Exception;
 
-	public void delete(Consignaciones entity);
+	public void delete(Consignaciones entity) throws Exception;
 
-	public Consignaciones findById(ConsignacionesId entity);
+	public Consignaciones findById(ConsignacionesId entity) throws Exception;
 
-	public List<Consignaciones> findAll();
+	public List<Consignaciones> findAll() throws Exception;
 
 }

@@ -4,45 +4,192 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
+	<title>Banco Icesi - Consignaciones</title>
 </h:head>
 
 <h:body>
 	<h:form>
-		<p:panel header="Registro Consignaciones">
-			<h:panelGrid columns="2" cellpadding="5">
-				<p:outputLabel value="Código:" />
-				<p:inputText id="txtCodigo" binding="#{consignacionesView.txtCodigo}" />
+
+		<p:panel header="Gestión Consignaciones">
+			<p:tabView orientation="left">
+				<p:tab title="Registro">
+					<p:growl id="growl3" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Identificador:" />
+							<p:inputText id="txtId" binding="#{consignacionesView.txtCodigo}" />
 
 
-				<p:outputLabel value="Número de cuenta:" />
-				<p:inputText id="txtCuenta" binding="#{consignacionesView.txtCuenta}" />
-				
-				
-				<p:outputLabel value="Cédula Usuario:" />
-				<p:inputText id="txtUsuario" binding="#{consignacionesView.txtUsuario}" />
-				
-				
-				<p:outputLabel value="Valor:" />
-				<p:inputText id="txtValor" binding="#{consignacionesView.txtValor}" />
-				
-				<p:outputLabel value="Descripción:" />
-				<p:inputTextarea id="txtDescripcion" binding="#{consignacionesView.txtDescripcion}" />
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCuenta" binding="#{consignacionesView.txtCuenta}" />
 
 
-			</h:panelGrid>
+							<p:outputLabel value="Id Usuario:" />
+							<p:inputText id="txtUsuario" binding="#{consignacionesView.txtUsuario}" />
+
+
+							<p:outputLabel value="Valor:" />
+							<p:inputText id="txtValor" binding="#{consignacionesView.txtValor}" />
+
+							<p:outputLabel value="Descripción:" />
+							<p:inputTextarea id="txtDescripcion"
+								binding="#{consignacionesView.txtDescripcion}" />
+
+						</h:panelGrid>
+						<p:commandButton id="btnGuardar" value="Guardar"
+							action="#{consignacionesView.actionGuardar()}" update="growl3" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Actulización">
+					<p:growl id="growl2" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Identificador:" />
+							<p:inputText id="txtId1" binding="#{consignacionesView.txtCodigo1}" />
+
+
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCuenta1" binding="#{consignacionesView.txtCuenta1}" />
+
+
+							<p:outputLabel value="Id Usuario:" />
+							<p:inputText id="txtUsuario1"
+								binding="#{consignacionesView.txtUsuario1}" />
+
+
+							<p:outputLabel value="Valor:" />
+							<p:inputText id="txtValor1" binding="#{consignacionesView.txtValor1}" />
+
+							<p:outputLabel value="Descripción:" />
+							<p:inputTextarea id="txtDescripcion1"
+								binding="#{consignacionesView.txtDescripcion1}" />
+
+						</h:panelGrid>
+						<p:commandButton id="btnActualizar" value="Actualizar"
+							action="#{consignacionesView.actionActualizar()}" update="growl2" />
+					</p:panel>
+
+				</p:tab>
+				<p:tab title="Eliminar">
+					<p:growl id="growl1" showDetail="true" sticky="true" />
+
+					<p:panel id="panel">
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="Identificador:" />
+							<p:inputText id="txtId2" binding="#{consignacionesView.txtCodigo2}" />
+
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCuenta2" binding="#{consignacionesView.txtCuenta2}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBorrar" value="Borrar"
+							action="#{consignacionesView.actionBorrar()}" update="growl1">
+
+						</p:commandButton>
+					</p:panel>
+
+				</p:tab>
+
+
+				<p:tab title="Buscar">
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="1">
+							<p:outputLabel value="Identificador:" />
+							<p:inputText id="txtId3" binding="#{consignacionesView.txtCodigo3}" />
+
+							<p:outputLabel value="No. Cuenta:" />
+							<p:inputText id="txtCuenta3" binding="#{consignacionesView.txtCuenta3}" />
+						</h:panelGrid>
+
+						<p:commandButton id="btnBuscar" value="Buscar"
+							action="#{consignacionesView.actionBuscar()}" ajax="false">
+
+						</p:commandButton>
+					</p:panel>
+
+					<p:growl id="growl" showDetail="true" sticky="true" />
+
+					<p:panel>
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:outputLabel value="Identificador: " />
+							<h:outputText id="b1" value="#{consignacionesView.id}" />
+
+
+							<p:outputLabel value="No. Cuenta: " />
+							<h:outputText id="b2" value="#{consignacionesView.cuenta}" />
+
+
+							<p:outputLabel value="Usuario: " />
+							<h:outputText id="b3" value="#{consignacionesView.usuario}" />
+
+
+							<p:outputLabel value="Valor: " />
+							<h:outputText id="b4" value="#{consignacionesView.valor}" />
+
+							<p:outputLabel value="Fecha: " />
+							<h:outputText id="b5" value="#{consignacionesView.fecha}" />
+
+							<p:outputLabel value="Descripción: " />
+							<h:outputText id="b6" value="#{consignacionesView.descripcion}" />
+
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+				<p:tab title="Información consignaciones">
+
+					<p:panel>
+						<h:panelGrid columns="1" cellpadding="2">
+
+							<p:commandButton value="Actualizar"
+								action="#{consignacionesView.actualizarConsignacionesTablas()}"
+								id="buttonUpdateTable" update="growl"
+								icon="ui-icon-arrowrefresh-1-s" ajax="false" />
+
+							<p:dataTable var="table" value="#{consignacionesView.consignacionesTabla}"
+								scrollWidth="800" scrollHeight="300" scrollable="true"
+								paginator="true" rowsPerPageTemplate="10,20,30">
+								<p:column headerText="Identificador">
+									<h:outputText value="#{table.id.conCodigo}" />
+								</p:column>
+
+								<p:column headerText="No. Cuenta">
+									<h:outputText value="#{table.cuentas.cueNumero}" />
+								</p:column>
+
+								<p:column headerText="Usuario">
+									<h:outputText value="#{table.usuarios.usuNombre}" />
+								</p:column>
+
+								<p:column headerText="Valor">
+									<h:outputText value="#{table.conValor}" />
+								</p:column>
+
+								<p:column headerText="Fecha">
+									<h:outputText value="#{table.conFecha}" />
+								</p:column>
+
+								<p:column headerText="Descripción" width="200">
+									<h:outputText value="#{table.conDescripcion}" />
+								</p:column>
+							</p:dataTable>
+
+						</h:panelGrid>
+
+					</p:panel>
+
+				</p:tab>
+
+
+			</p:tabView>
 		</p:panel>
-		<p:commandButton id="btnGuardar" value="Guardar"
-			action="#{consignacionesView.actionGuardar()}" />
-
-		<p:commandButton id="btnActualizar" value="Actualizar"
-			action="#{consignacionesView.actionActualizar()}" />
-
-		<p:commandButton id="btnBorrar" value="Borrar"
-			action="#{consignacionesView.actionBorrar()}" />
-
-		<p:commandButton id="btnBuscar" value="Buscar"
-			action="#{consignacionesView.actionBuscar()}" />
 
 	</h:form>
 

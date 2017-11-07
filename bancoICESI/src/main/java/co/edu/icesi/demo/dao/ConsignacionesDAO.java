@@ -16,31 +16,31 @@ public class ConsignacionesDAO implements IConsignacionesDAO {
 	private EntityManager entityManager;
 
 	@Override
-	public void save(Consignaciones entity) {
+	public void save(Consignaciones entity) throws Exception {
 		entityManager.persist(entity);
 
 	}
 
 	@Override
-	public void update(Consignaciones entity) {
+	public void update(Consignaciones entity) throws Exception {
 		entityManager.merge(entity);
 
 	}
 
 	@Override
-	public void delete(Consignaciones entity) {
-		entityManager.remove(entity);
+	public void delete(Consignaciones entity) throws Exception {
+		entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
 
 	}
 
 	@Override
-	public Consignaciones findById(ConsignacionesId entity) {
+	public Consignaciones findById(ConsignacionesId entity) throws Exception {
 
 		return entityManager.find(Consignaciones.class, entity);
 	}
 
 	@Override
-	public List<Consignaciones> findAll() {
+	public List<Consignaciones> findAll() throws Exception {
 		String jpql = "SELECT con FROM Consignaciones con";
 		return entityManager.createQuery(jpql).getResultList();
 	}

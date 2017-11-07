@@ -207,31 +207,31 @@ public class BusinessDelegate implements IBusinessDelegate {
 	}
 
 	@Override
-	public void saveConsignaciones(Consignaciones entity) {
+	public void saveConsignaciones(Consignaciones entity) throws Exception {
 		consignacionesLogic.save(entity);
 
 	}
 
 	@Override
-	public void updateConsignaciones(Consignaciones entity) {
+	public void updateConsignaciones(Consignaciones entity) throws Exception {
 		consignacionesLogic.update(entity);
 
 	}
 
 	@Override
-	public void deleteConsignaciones(Consignaciones entity) {
+	public void deleteConsignaciones(Consignaciones entity) throws Exception {
 		consignacionesLogic.delete(entity);
 
 	}
 
 	@Override
-	public Consignaciones findByIdConsignaciones(ConsignacionesId entity) {
+	public Consignaciones findByIdConsignaciones(ConsignacionesId entity) throws Exception {
 
 		return consignacionesLogic.findById(entity);
 	}
 
 	@Override
-	public List<Consignaciones> findAllConsignaciones() {
+	public List<Consignaciones> findAllConsignaciones() throws Exception {
 		// TODO Auto-generated method stub
 		return consignacionesLogic.findAll();
 	}

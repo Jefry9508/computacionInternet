@@ -75,15 +75,15 @@ public interface IBusinessDelegate {
 	public List<Cuentas> findAllCuentas() throws Exception;
 
 	// -------------------------Consignaciones----------------------------------
-	public void saveConsignaciones(Consignaciones entity);
+	public void saveConsignaciones(Consignaciones entity) throws Exception;
 
-	public void updateConsignaciones(Consignaciones entity);
+	public void updateConsignaciones(Consignaciones entity) throws Exception;
 
-	public void deleteConsignaciones(Consignaciones entity);
+	public void deleteConsignaciones(Consignaciones entity) throws Exception;
 
-	public Consignaciones findByIdConsignaciones(ConsignacionesId entity);
+	public Consignaciones findByIdConsignaciones(ConsignacionesId entity) throws Exception;
 
-	public List<Consignaciones> findAllConsignaciones();
+	public List<Consignaciones> findAllConsignaciones() throws Exception;
 
 	// ----------------------------Retiros--------------------------------------
 	public void saveRetiros(Retiros entity) throws Exception;

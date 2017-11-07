@@ -34,7 +34,7 @@ public class ConsignacionesLogic implements IConsignacionesLogic {
 	private IUsuariosDAO usuariosDAO;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void save(Consignaciones entity) {
+	public void save(Consignaciones entity) throws Exception {
 		try {
 			log.info("saveConsignaciones inició");
 
@@ -56,8 +56,8 @@ public class ConsignacionesLogic implements IConsignacionesLogic {
 
 			Consignaciones consignacion = consignacionesDAO.findById(entity.getId());
 
-			if (consignacion != null) {
-				throw new Exception("Ya existe una consignación con el id " + consignacion.getId().getConCodigo());
+			if (consignacion == null) {
+				throw new Exception("No existe una consignación con el id " + consignacion.getId().getConCodigo());
 			}
 
 			Cuentas cuenta = cuentasDAO.findById(entity.getId().getCueNumero());
@@ -130,7 +130,7 @@ public class ConsignacionesLogic implements IConsignacionesLogic {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void update(Consignaciones entity) {
+	public void update(Consignaciones entity) throws Exception {
 		try {
 
 			log.info("inicia updateConsignaciones");
@@ -168,7 +168,7 @@ public class ConsignacionesLogic implements IConsignacionesLogic {
 			}
 
 			if (!Utilities.checkNumberAndCheckWithPrecisionAndScale("" + entity.getId().getConCodigo(), 10, 0)) {
-				throw new Exception("El número de cuenta no puede ser mayor a 30 digitos");
+				throw new Exception("El ID de la cuenta no puede ser mayor a 10 digitos");
 			}
 
 			if (!Utilities.checkWordAndCheckWithlength("" + entity.getId().getCueNumero(), 30)) {
@@ -209,7 +209,7 @@ public class ConsignacionesLogic implements IConsignacionesLogic {
 				throw new Exception("La descripción de la consignación es obligatoria");
 			}
 
-			if (!Utilities.checkNumberAndCheckWithPrecisionAndScale("" + entity.getConDescripcion(), 50, 0)) {
+			if (!Utilities.checkWordAndCheckWithlength("" + entity.getConDescripcion(), 50)) {
 				throw new Exception("El número de cuenta no puede ser mayor a 30 digitos");
 			}
 
@@ -223,35 +223,31 @@ public class ConsignacionesLogic implements IConsignacionesLogic {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void delete(Consignaciones entity) {
-		try {
-			log.info("deleteConsignaciones inició");
+	public void delete(Consignaciones entity) throws Exception {
 
-			if (entity.getId() == null) {
-				throw new Exception("La consignación no tiene una identificación asociada");
-			}
+		log.info("deleteConsignaciones inició");
 
-			if (entity.getId().getConCodigo() == 0) {
-				throw new Exception("El código de la consignación es obligatorio");
-			}
-
-			Consignaciones consignaciones = consignacionesDAO.findById(entity.getId());
-
-			if (consignaciones == null) {
-				throw new Exception("No exise ninguna consignación con el código " + entity.getId().getConCodigo());
-			}
-
-			consignacionesDAO.delete(entity);
-			log.info("eliminó satisfactoriamente");
-
-		} catch (Exception e) {
-			log.error("deleteConsignaciones falló", e);
+		if (entity.getId() == null) {
+			throw new Exception("La consignación no tiene una identificación asociada");
 		}
+
+		if (entity.getId().getConCodigo() == 0) {
+			throw new Exception("El código de la consignación es obligatorio");
+		}
+
+		Consignaciones consignaciones = consignacionesDAO.findById(entity.getId());
+
+		if (consignaciones == null) {
+			throw new Exception("No exise ninguna consignación con el código " + entity.getId().getConCodigo());
+		}
+
+		consignacionesDAO.delete(entity);
+		log.info("eliminó satisfactoriamente");
 
 	}
 
 	@TransactionAttribute
-	public Consignaciones findById(ConsignacionesId entity) {
+	public Consignaciones findById(ConsignacionesId entity) throws Exception {
 		Consignaciones consignaciones = null;
 
 		try {
@@ -275,7 +271,7 @@ public class ConsignacionesLogic implements IConsignacionesLogic {
 	}
 
 	@TransactionAttribute
-	public List<Consignaciones> findAll() {
+	public List<Consignaciones> findAll() throws Exception {
 
 		return consignacionesDAO.findAll();
 	}
