@@ -1,0 +1,94 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+
+
+
+</h:head>
+
+
+
+
+<style>
+body {
+	background-image:
+		url('http://www.pptback.com/uploads/chicago-skyscrapers-backgrounds-powerpoint.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+	color: black;
+	font-family: 'Open Sans', sans-serif !important;
+	padding: 0;
+}
+
+
+
+</style>
+
+
+<!-- styleClass="cyan lighten-5" -->
+<h:body>
+
+
+	<div class="valign-wrapper" id="login-page">
+		<div class="container">
+			<div class="center-align">
+				<div class="row">
+					<div class="col s6 offset-s3">
+						<div class="card">
+							<div class="card-content">
+								<img class="responsive-img" style="max-width: 64px;"
+									src="https://myslu.slu.edu/res/images/cas-padlock-icon.png" />
+								<div class="left-align">
+									<h:form id="login-form">
+										<p:growl autoUpdate="true" />
+										<div class="row">
+											<div class="col s12 input-field">
+												<h:inputText id="usuario" required="true"
+													requiredMessage="El usuario es requerido!" />
+												<h:outputLabel for="usuario" value="Usuario" />
+											</div>
+											<div class="col s12 input-field">
+												<h:inputSecret id="password" required="true"
+													requiredMessage="Password es requerido!" />
+												<h:outputLabel for="password" value="Password" />
+											</div>
+											<div class="col s12 input-field">
+												<h:commandLink value="Login" styleClass="btn btn-large" />
+											</div>
+										</div>
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(document).on("ready", function() {
+			$('login-page').css({
+				'height' : window.innerHeight + 'px'
+			});
+		});
+	</script>
+</h:body>
+</html>
