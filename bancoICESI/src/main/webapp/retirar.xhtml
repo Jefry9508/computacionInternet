@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js" />
+
+
+
+</h:head>
+
+
+
+<!--  -->
+<h:body styleClass="cyan lighten-5">
+
+
+	<div class="valign-wrapper" id="login-page">
+		<div class="container">
+			<div class="center-align">
+				<div class="row">
+					<div class="col s6 offset-s3">
+						<div class="card">
+							<div class="card-content">
+								<img class="responsive-img" style="max-width: 64px;"
+									src="https://www.cenfedcu.org/Includes/svg/atm-icon.svg" />
+								<div class="left-align">
+									<h:form id="login-form">
+										<p:growl autoUpdate="true" />
+										<div class="row">
+											<div class="col s12 input-field">
+												<h:inputText id="cuenta" required="true"
+													requiredMessage="EL No. de cuenta es requerido!" />
+												<h:outputLabel for="cuenta" value="Cuenta" />
+											</div>
+											<div class="col s12 input-field">
+												<h:inputSecret id="password" required="true"
+													requiredMessage="Password es requerido!" />
+												<h:outputLabel for="password" value="Password" />
+											</div>
+											<div class="col s12 input-field">
+												<h:inputText id="valor" required="true"
+													requiredMessage="El valor es requerido!" />
+												<h:outputLabel for="valor" value="Valor" />
+											</div>
+											<div class="col s12 input-field">
+												<h:commandLink value="Retirar!" styleClass="btn btn-large" />
+											</div>
+										</div>
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(document).on("ready", function() {
+			$('login-page').css({
+				'height' : window.innerHeight + 'px'
+			});
+		});
+	</script>
+
+
+</h:body>
+</html>
